@@ -1,46 +1,51 @@
-# Getting Started with Create React App
+# Recruitment task for company X
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![app screen](./app_screen.png)
 
-## Available Scripts
+## Task content
+
+### The ATM App
+
+
+It’s payday and there’s a new Pokémon game in town so Michael wants to buy a Switch It costs £270, and we’d like you to build an ATM web app he can use.
+
+He will need to enter his PIN (1111) which you should check against our PIN API. The API will tell you his current balance, which should then be shown on screen.
+
+He’s going to make 3 withdrawals: £140, £50, £90.
+
+Unbeknownst to Michael, diggers keep stealing our ATMs so we aren’t carrying a lot of notes. The machine has: 4x£5notes, 15 x £10 notes, 7 x £20 notes.
+
+You should try to give a roughly even mix of notes when possible, and will have to take into account what to do when certain ones run out.
+Your ATM allows an overdraft of up to £100 and should let users know if they do go overdrawn.
+
+### The PIN API
+
+This is a simple endpoint to let you check a user’s PIN. You make a POST call to: https:/example.com/api/pin/. If all is good, the API will return with a 200 status with currentBalance. If you’ve coded your request wrong, you will get an error message to help you out, or a 403 error which says if the PIN itself is wrong.
+
+### Guidance
+
+The challenge is a chance for you to show off, so pick the tools/frameworks/libraries etc that you know best. We’ve deliberately asked you to work on this at home so you aren’t under any fake pressures and can use the laptop/editor etc that you like best.
+- Please put your finished work on Github, or if you need it to be private, please zip your folder, upload it to https://wetransfer.com/ and email us the link
+- Include a readme with setup instructions and anything else you’d like us to know.
+- We know tests aren’t everyone’s favourite thing, but we write them a lot.
+- Brownie points go towards apps with great UX and code we’d be happy to maintain in a real app.
+
+
+## How to run the app
 
 In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I have also deployed the app to vercel, you can check it here:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### [https://recruitment-task-atm.vercel.app/](https://recruitment-task-atm.vercel.app/)
 
-### `npm test`
+## Some explanations about code architecture, libraries etc. Why I decided to do some things like I did:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. App is created in `CRA`, app don't needs any side rendering or routing, so it is perfect choice
+2. For styling I've chosen styled modules, I've wanted to make something interesting so I added ATM picture and fitted whole application in ATM screen, it looks cool, but also needs a lot of magic numbers. So styled modules are kinda good for that kind of things.
+3. I've decided to not use forms here, it is actually not exactly web app, the whole idea was to build more like for real ATM ;) So that means project don't need to be correct that much from semantic perspective.
+4. App is not responsive ;)
+5. Withdraw algorithm, you can read more about in `src/Atm/helpers/calculateWithdraw.ts`
+6. From front-end side this app is pretty dumb so I have decided to not adding test for UI. But it is definitely good to test withdraw functionality so I've created test to check if everything works correct: `calculateWithdraw.test.ts`
