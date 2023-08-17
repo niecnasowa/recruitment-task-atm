@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  justify-content: center;
+
+  background: linear-gradient(
+      135deg,
+      #4f2727 21px,
+      #37403b 22px,
+      #d7c5c3 24px,
+      transparent 24px,
+      transparent 67px,
+      #37403b 67px,
+      #d7c5c3 69px,
+      transparent 69px
+    ),
+    linear-gradient(
+        225deg,
+        #4f2727 21px,
+        #d7c5c3 22px,
+        #d7c5c3 24px,
+        transparent 24px,
+        transparent 67px,
+        #d7c5c3 67px,
+        #d7c5c3 69px,
+        transparent 69px
+      )
+      0 64px;
+  background-color: #4f2727;
+  background-size: 64px 128px;
+}
+
+.atmWrapper {
+  overflow: hidden;
+  position: relative;
+  width: 900px;
+  height: 1000px;
+}
+
+.atmContent {
+  position: absolute;
+  // All number here are magic numbers, I played as long as it looks good
+  transform: perspective(100px) rotateX(0.8deg);
+  top: 253px;
+  left: 158px;
+  height: 342px;
+  width: 584px;
+}
